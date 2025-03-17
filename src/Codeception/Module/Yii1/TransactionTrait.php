@@ -29,6 +29,5 @@ trait TransactionTrait
             return;
         }
         $this->transaction->rollback();
-        $this->transactionWrapper = null;
     }
 }
