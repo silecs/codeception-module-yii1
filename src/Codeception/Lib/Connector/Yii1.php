@@ -152,7 +152,7 @@ class Yii1 extends AbstractBrowser
                 // cleanup metadata cache
                 $property = new \ReflectionProperty('CActiveRecord', '_md');
                 $property->setAccessible(true);
-                $property->setValue([]);
+                $property->setValue(null, []);
                 // close and delete the db component
                 $db->setActive(false);
                 $db->getCurrentTransaction();
