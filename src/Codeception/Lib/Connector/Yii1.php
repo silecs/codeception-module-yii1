@@ -137,7 +137,11 @@ class Yii1 extends AbstractBrowser
     public function resetApplication()
     {
         codecept_debug('Resetting application');
-        $app = Yii::app();
+        try {
+            $app = Yii::app();
+        } catch (\Throwable) {
+            $app = null;
+        }
         if ($app !== null) {
             // close the session
             $session = $app->getComponent('session', false);
@@ -173,7 +177,12 @@ class Yii1 extends AbstractBrowser
     {
         codecept_debug('Starting application');
         $config = require($this->configFile);
-        if (Yii::app() !== null) {
+        try {
+            $app = Yii::app();
+        } catch (\Throwable) {
+            $app = null;
+        }
+        if ($app !== null) {
             $this->resetApplication();
         }
         Yii::$enableIncludePath = false;
